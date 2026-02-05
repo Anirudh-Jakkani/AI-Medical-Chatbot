@@ -30,7 +30,7 @@ def index():
 
 @app.route("/get", methods=["POST"])
 def get_bot_response():
-    user_msg = request.form["msg"]
+    user_msg = request.form["msg"].strip().lower()
     
     
     greetings = ["hi", "hii", "hello", "hey", "good morning", "good evening"]
