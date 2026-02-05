@@ -1,18 +1,32 @@
-# AI-Medical-Chatbot (RAG)
+# 🩺 AI Medical Chatbot (RAG)
 
-This project is a Retrieval Augmented Generation (RAG) has medical chatbot.
-It answers medical questions using a provided PDF as a knowledge source.
+An industry-grade medical chatbot built using **Flask**, **Pinecone**, and **Groq LLaMA 3.1**.
+The chatbot uses **Retrieval-Augmented Generation (RAG)** to provide grounded medical answers
+from a PDF knowledge base.
 
-## Tech Stack
-- Groq LLM(LLaMa 3.1)
-- Langchain
-- Pinecone
+⚠️ For educational purposes only. Not a replacement for a doctor.
+
+---
+
+##  Features
+- Medical Q&A using RAG
+- Pinecone vector search
+- Hallucination prevention
+- Modern chat UI
+- Flask backend
+- Production-ready project structure
+
+---
+
+##  Tech Stack
 - Python
+- Flask
+- LangChain
+- Pinecone
+- Groq (LLaMA 3.1)
+- HuggingFace embeddings
+- HTML / CSS / Bootstrap
 
-## Features 
-- Context-aware answers
-- NO hallucinations
-- Medical disclamier included
+---
 
-## Note
-This chatbot is for educational purpose only.
+
