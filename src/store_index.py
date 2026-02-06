@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 import os
 
-from src.helper import load_pdf_files, filter_to_minimal_docs, text_split, download_embeddings
+from src.helper_runtime import load_pdf_files, filter_to_minimal_docs, text_split
+from src.helper_indexing import download_embeddings
 from pinecone import Pinecone
 from pinecone import ServerlessSpec
 from langchain_pinecone import PineconeVectorStore

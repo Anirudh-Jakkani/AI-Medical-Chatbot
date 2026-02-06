@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 from groq import Groq
 from langchain_pinecone import PineconeVectorStore
-from src.helper import download_embeddings
 
 load_dotenv()
 
@@ -14,7 +13,7 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 vector_store = PineconeVectorStore.from_existing_index(
     index_name=os.getenv("PINECONE_INDEX_NAME"),
-    embedding=download_embeddings(),
+    embedding=None,
 )
 
 retriever = vector_store.as_retriever(search_kwargs={"k": 4})
