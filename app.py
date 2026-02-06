@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 from groq import Groq
 from langchain_pinecone import PineconeVectorStore
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from src.helper import download_embeddings
 
 load_dotenv()
 
@@ -11,12 +11,10 @@ app = Flask(__name__)
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-    ) 
-vector_store = PineconeVectorStore(
-    index_name="medi-assistant",
-    embedding=embeddings,
+
+vector_store = PineconeVectorStore.from_existing_index(
+    index_name=os.getenv("PINECONE_INDEX_NAME"),
+    embedding=download_embeddings(),
 )
 
 retriever = vector_store.as_retriever(search_kwargs={"k": 4})
@@ -30,7 +28,7 @@ def index():
 
 @app.route("/get", methods=["POST"])
 def get_bot_response():
-    user_msg = request.form["msg"].strip().lower()
+    user_msg = request.form["msg"].strip()
     
     
     greetings = ["hi", "hii", "hello", "hey", "good morning", "good evening"]
@@ -72,4 +70,4 @@ Answer:
     return response.choices[0].message.content
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(host="0.0.0.0", port=8080)
